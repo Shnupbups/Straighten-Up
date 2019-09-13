@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "straightenup",
+  "version": "1.0.0",
+
+  "name": "Straighten Up",
+  "description": "Removes the italics on renamed items.",
+  "authors": [
+    "Shnupbups"
+  ],
+
+  "license": "LGPLv3",
+  "icon": "assets/straightenup/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+  },
+  "mixins": [
+    "straightenup.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.6.1"
+  }
+}

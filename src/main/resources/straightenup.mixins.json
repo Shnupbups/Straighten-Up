@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.shnupbups.straightenup",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "ItemStackMixin",
+    "InGameHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
