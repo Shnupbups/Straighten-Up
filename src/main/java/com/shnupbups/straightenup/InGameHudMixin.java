@@ -9,8 +9,8 @@ import net.minecraft.util.Formatting;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-	@ModifyArg(method = "renderHeldItemTooltip()V", at =
-	@At(value = "INVOKE", target = "Lnet/minecraft/text/Text;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/Text;"))
+	@ModifyArg(method = "renderHeldItemTooltip(Lnet/minecraft/client/util/math/MatrixStack;)V", at =
+	@At(value = "INVOKE", target = "Lnet/minecraft/text/MutableText;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/MutableText;"))
 	public Formatting straightenUpActionBar(Formatting formatting) {
 		return Formatting.RESET;
 	}

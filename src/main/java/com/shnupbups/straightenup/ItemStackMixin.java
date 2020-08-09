@@ -14,13 +14,13 @@ import net.minecraft.util.Formatting;
 public class ItemStackMixin {
 	@Environment(EnvType.CLIENT)
 	@ModifyArg(method = "getTooltip(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/client/item/TooltipContext;)Ljava/util/List;", at =
-	@At(value = "INVOKE", target = "Lnet/minecraft/text/Text;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/Text;"))
+	@At(value = "INVOKE", target = "Lnet/minecraft/text/MutableText;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/MutableText;"))
 	private Formatting straightenUpTooltip(Formatting formatting) {
 		return Formatting.RESET;
 	}
 	
 	@ModifyArg(method = "toHoverableText()Lnet/minecraft/text/Text;", at =
-	@At(value = "INVOKE", target = "Lnet/minecraft/text/Text;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/Text;"))
+	@At(value = "INVOKE", target = "Lnet/minecraft/text/MutableText;formatted(Lnet/minecraft/util/Formatting;)Lnet/minecraft/text/MutableText;"))
 	private Formatting straightenUpHoverText(Formatting formatting) {
 		return Formatting.RESET;
 	}
