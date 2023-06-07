@@ -1,6 +1,7 @@
 plugins {
-	id 'fabric-loom' version '0.10-SNAPSHOT'
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -9,9 +10,6 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.mod_name
 version = project.mod_version + "+" + project.version_meta
 group = project.maven_group
-
-minecraft {
-}
 
 repositories {
 	maven { url "https://maven.terraformersmc.com/"}
@@ -29,13 +27,21 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fapi_version}"
+    modRuntimeOnly "net.fabricmc.fabric-api:fabric-api:${project.fapi_version}"
 	
 	// ModMenu
     modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 	
 	// RoughlyEnoughItems
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	// Architectury Fabric
+	modRuntimeOnly "dev.architectury:architectury-fabric:${project.arch_version}"
+	
+	// Cloth Config
+	modRuntimeOnly ("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude module: "fabric-api" // irit
+	}
 }
 
 java {
@@ -72,6 +78,16 @@ jar {
                 "MixinConfigs"            : "${mod_name}.mixins.json"
         ])
     }
+}
+
+modrinth {
+	projectId = project.modrinth_project
+	uploadFile = remapJar
+	versionName = "${project.mod_version} for Minecraft ${project.minecraft_version}"
+	gameVersions = ["${project.minecraft_version}"]
+	dependencies {
+		
+	}
 }
 
 publishing {

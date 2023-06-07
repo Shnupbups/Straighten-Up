@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
-	@Redirect(method = "renderHeldItemTooltip(Lnet/minecraft/client/util/math/MatrixStack;)V", at =
+	@Redirect(method = "renderHeldItemTooltip(Lnet/minecraft/client/gui/DrawContext;)V", at =
 	@At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hasCustomName()Z"))
 	public boolean straightenUpActionBar(ItemStack stack) {
 		return false;
